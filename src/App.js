@@ -1,31 +1,20 @@
 import React, { useState } from "react";
 import AddUsers from "./components/Users/AddUsers";
-
-const DUMMY_USERDATA = [
-  {
-    id: 1,
-    username: "Kokushibo",
-    age: 20,
-  },
-  {
-    id: 2,
-    username: "Yoriichi",
-    age: 18,
-  },
-];
+import UsersList from "./components/Users/UsersList";
 
 const App = () => {
-  const [userData, setUserData] = useState(DUMMY_USERDATA);
+  const [usersList, setUsersList] = useState([]);
 
-  const saveNewUserHandler = addedData => {
-    setUserData(prevVal => {
-      return [addedData, ...prevVal];
+  const saveNewUserHandler = addedDataUsers => {
+    setUsersList(prevVal => {
+      return [addedDataUsers, ...prevVal];
     });
   };
 
   return (
     <div>
-      <AddUsers onSaveUser={saveNewUserHandler} />
+      <AddUsers onAddUser={saveNewUserHandler} />
+      <UsersList usersData={usersList} />
     </div>
   );
 };

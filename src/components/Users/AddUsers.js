@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
-
 import userStyle from "./AddUser.module.css";
 
 const AddUsers = ({ onAddUser }) => {
@@ -32,17 +31,22 @@ const AddUsers = ({ onAddUser }) => {
       enteredUsername: "",
       enteredAge: "",
     });
-    if (inputUser.enteredUsername.length < 1) {
+    if (
+      inputUser.enteredUsername.trim().length < 1 ||
+      inputUser.enteredAge.trim().length < 1
+    ) {
       setIsValid(false);
       return;
     }
-    console.log(inputUser.enteredUsername, inputUser.enteredAge);
-
-    const userData = {
+    if (+inputUser.enteredAge < 1) {
+      setIsValid(false);
+      return;
+    }
+    const usersListData = {
       username: inputUser.enteredUsername,
       age: inputUser.enteredAge,
     };
-    // onAddUser(userData);
+    onAddUser(usersListData);
   };
 
   return (
