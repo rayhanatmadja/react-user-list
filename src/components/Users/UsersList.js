@@ -6,9 +6,9 @@ const UsersList = ({ usersData }) => {
   return (
     <Card listStyle={listStyle.users}>
       <ul>
-        {usersData.map((user, index) => {
+        {usersData.map(user => {
           return (
-            <li key={index}>
+            <li key={user.id}>
               {user.username} ({user.age} years old)
             </li>
           );
